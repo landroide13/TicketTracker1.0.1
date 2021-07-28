@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card bg-dark text-white">
+
+          <%= form_for(@user, html:{class: 'col-md-8 offset-md-2 margin2'}) do |i| %>
+
+              <div class="mb-2">
+                <%= i.label :first_name, class:'form-label' %>
+                <%= i.text_field :first_name, class:"form-control" %>
+              </div>
+              
+              <div class="mb-2">
+                <%= i.label :last_name, class:'form-label' %>
+                <%= i.text_field :last_name, class:"form-control" %>
+              </div>
+
+              <div class="mb-2">
+                <%= i.label :email, class:'form-label' %>
+                <%= i.text_field :email, class:"form-control" %>
+              </div>
+            
+
+              <div class="col-md-8">  
+                <%= i.button(@user.new_record? ? "Sign UP" : "Submit Changes", class:"btn btn-primary") %>
+              </div>
+
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_action :get_user, only: [:edit, :update, :show]
 
   def index
@@ -19,6 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+
   def update
     if @user.update get_params
       flash[:success] = 'Update Successfully'
@@ -26,10 +31,6 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-
-  def edit
   end
 
   def delete
@@ -44,7 +45,7 @@ class UsersController < ApplicationController
   private
 
   def get_params
-    params.require(:User).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email)
   end
 
   def get_user
