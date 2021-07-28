@@ -1,4 +1,37 @@
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card bg-dark text-white">
+
+          <%= form_for(@ticket, html:{class: 'col-md-8 offset-md-2 margin2'}) do |i| %>
+
+              <div class="mb-2">
+                <%= i.label :description, class:'form-label' %>
+                <%= i.text_field :description, class:"form-control" %>
+              </div>
+              
+              <div class="mb-2">
+                <%= i.label :status, class:'form-label' %>
+                <%= i.text_field :status, class:"form-control" %>
+              </div>
+
+              <div class="mb-2">
+                <%= i.label :response, class:'form-label' %>
+                <%= i.text_field :response, class:"form-control" %>
+              </div>
+            
+              <div class="col-md-8">  
+                <%= i.button(@user.new_record? ? "Submit" : "Submit Changes", class:"btn btn-primary") %>
+              </div>
+
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
