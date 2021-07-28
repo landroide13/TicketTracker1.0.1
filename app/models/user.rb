@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   before_save {self.email = email.downcase}
+  
+  has_many :tickets
+
   validates :first_name, presence: true, length: { minimum: 3, maximum: 15}
   validates :last_name, presence: true, length: { minimum: 3, maximum: 35}
 
@@ -8,6 +11,8 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false},
             format: { with: VALID_EMAIL_REGEX }
 
-  has_secure_password          
+  has_secure_password   
+  
+  
 
 end

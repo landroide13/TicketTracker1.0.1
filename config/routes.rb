@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about'
 
-  resources :users
+  resources :users do
+    resources :tickets
+  end
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
