@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new get_params
     if @user.save
+      session[:user_id] = @user.id
       flash[:success] = 'Sign Up Successfully'
       redirect_to @user
     else
@@ -45,11 +46,18 @@ class UsersController < ApplicationController
   private
 
   def get_params
-    params.require(:user).permit(:first_name, :last_name, :email)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
   def get_user
     @user = User.find(params[:id])
+  end
+
+  def require_user
+    if current_user != @user
+      flash[:notice] = 'You cannot edit others Profile.'
+      redirect_to user_path(current_user)
+    end
   end
 
 end
