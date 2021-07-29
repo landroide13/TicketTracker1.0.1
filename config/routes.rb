@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about'
 
-  resources :users do
-    resources :tickets
-  end
+  get '/signup' => 'users#new'
+  resources :users, except: [:new]
+
+  resources :tickets
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
