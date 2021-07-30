@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
     @ticket.user = current_user
     if @ticket.save
       flash[:success] = 'Ticket Successfully Created'
-      redirect_to @user
+      redirect_to @ticket
     else
       render 'new'
     end
