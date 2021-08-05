@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:notice] = "Ups Try Again.."
       render 'new'
-    end
+    end 
   end
 
   def destroy
@@ -21,4 +21,30 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+
+  def signin
+  end
+
+  def signin_admin
+    admin = Admin.find_by(email: params[:sessions][:email].downcase)
+    if admin && admin.authenticate(params[:sessions][:password])
+      session[:admin_id] = admin.id
+      flash[:notice] = "Welcome #{admin.name}"
+      redirect_to admin
+    else
+      flash.now[:notice] = "Ups Try Again.."
+      render 'signin'
+    end 
+  end
+
+  def signout_admin
+    session[:admin_id] = nil
+    flash[:notice] = "Bye.." 
+    redirect_to root_path
+  end
+
+
+
 end
+
+

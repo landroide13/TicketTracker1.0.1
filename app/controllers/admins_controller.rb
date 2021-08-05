@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
   before_action :get_admin, only: [:edit, :update, :show, :delete]
 
   def index
-    @admins = Admin.all
+    @tickets = Ticket.all
   end
 
   def new
@@ -15,7 +15,7 @@ class AdminsController < ApplicationController
     if @admin.save
       session[:admin_id] = @admin.id
       flash[:success] = 'Sign Up Successfully'
-      redirect_to @admin
+      redirect_to @tickets
     else
       render 'new'
     end
@@ -36,14 +36,14 @@ class AdminsController < ApplicationController
 
   def delete
     @admin.destroy
-    redirect_to @admin
+    redirect_to root_path
   end
 
   def show
   end
 
 
-  private
+  private 
 
   def get_params
     params.require(:admin).permit(:name,:email, :password, :password_confirmation)
